@@ -40,7 +40,9 @@ const page = async ({ params } : { params: Promise<{ id: string }>}) => {
           alt="thumbnail" 
           className="w-full h-auto rounded-xl"
          />
-
+        <Suspense fallback={<Skeleton className="view-skeleton" />}>
+            <View id={id} />
+        </Suspense>
          <div className="space-y-5 mt-10 max-w-4xl mx-auto">
             <div className="flex-between gap-5">
                 <Link href={`/user/${post.author?._id}`}
@@ -86,9 +88,7 @@ const page = async ({ params } : { params: Promise<{ id: string }>}) => {
           </div>
          )}        
 
-        <Suspense fallback={<Skeleton className="view-skeleton" />}>
-            <View id={id} />
-        </Suspense>
+
       </section>
     </>
   )
